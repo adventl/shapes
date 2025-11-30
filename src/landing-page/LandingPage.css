@@ -1,0 +1,32 @@
+.landing-root {
+  padding: 32px;
+}
+
+.landing-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.landing-title {
+  margin-bottom: 8px;
+}
+
+.landing-desc {
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.landing-preview {
+  height: 240px;
+  background: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.landing-preview-label {
+  color: #888;
+}

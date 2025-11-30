@@ -31,7 +31,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           pwd
           npm ci
-          npm run build
+          npm run build -- --base=/shapes 
           ls -la
       
       - name: Upload static files as artifact

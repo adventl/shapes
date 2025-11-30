@@ -31,12 +31,13 @@ jobs:
           cd $GITHUB_WORKSPACE
           pwd
           npm ci
-          npm run build    
+          npm run build
+          ls -la
       
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
         with:
-          path: build/
+          path: dist/
   
   # Default deploye example from: https://github.com/actions/deploy-pages
   deploy:

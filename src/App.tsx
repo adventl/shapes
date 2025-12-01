@@ -23,27 +23,22 @@ export const App: React.FC = React.memo(() => {
   }, []);
 
   return (
-    <Layout className="min-h-screen flex flex-col">
-      <Header className="hover:bg-sky-700">
-        <div/>
-        <nav>
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            selectedKeys={[active]}
-            onClick={handleMenuClick}
-            items={Object.entries(componentMap).map(([key, item]) => ({ key, label: item.label }))}
-          />
-        </nav>
+    <Layout className="h-screen w-screen flex flex-col">
+      <Header>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          selectedKeys={[active]}
+          onClick={handleMenuClick}
+          items={Object.entries(componentMap).map(([key, item]) => ({ key, label: item.label }))}
+        />
       </Header>
-      <Content className="flex-1">
+      <Content className="flex-1 overflow-auto bg-white flex">
         <Suspense fallback={<div>Loading...</div>}>
-          <main className="p-4">
-            {React.createElement(componentMap[active].component)}
-          </main>
+          {React.createElement(componentMap[active].component)}
         </Suspense>
       </Content>
-      <Footer className="bg-gray-900 text-white text-center py-4">
+      <Footer className="flex-shrink-0 bg-gray-100 text-center">
         Ant Design {new Date().getFullYear()} — Created by Ant UED
       </Footer>
     </Layout>

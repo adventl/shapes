@@ -3,7 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { ColorPicker, Flex } from 'antd';
 
 export const CanvasContainer: React.FC = React.memo(() => {
-  return (
+    return (
     <Flex>
       <ColorPicker defaultValue="#1677ff" open={true} />
       <Canvas>

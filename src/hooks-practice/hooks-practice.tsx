@@ -20,11 +20,9 @@ export const HooksPractice: React.FC = () => {
     setActive(key);
   }, []);
 
-
-
   return (
-    <Layout>
-      <Sider width={200}>
+    <Layout className="h-full flex">
+      <Sider className="h-full" width={200}>
         <Menu
           theme="dark"
           mode="inline"
@@ -34,9 +32,9 @@ export const HooksPractice: React.FC = () => {
           items={Object.entries(componentMap).map(([key, item]) => ({ key, label: item.label }))}
         />
       </Sider>
-      <Content style={{ padding: '0 24px', minHeight: 280 }}>
+      <Content className="flex-1 flex flex-col" style={{ padding: '0 24px', minHeight: 280 }}>
         <Suspense fallback={<div>Loading...</div>}>
-          <main style={{ padding: 24 }}>
+          <main className="p-6 flex-1 overflow-auto">
             {React.createElement(componentMap[active].component)}
           </main>
         </Suspense>

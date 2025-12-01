@@ -2,17 +2,18 @@
 import React, { useState, useCallback, Suspense } from 'react';
 import './App.css';
 import { Layout, Menu } from 'antd';
-import CanvasContainer from './canvas/CanvasContainer';
-import LandingPage from './landing-page/LandingPage';
+import CanvasContainer from './canvas/canvas-container';
+import LandingPage from './landing-page/landing-page';
+import HooksPractice from './hooks-practice/hooks-practice';
+import type { NavBarItem } from './types/navbar.interface';
 
 const { Header, Footer, Content } = Layout;
 
-
-const navBar = [
-  { key: 'home', label: 'Home' },
-  { key: 'canvas', label: 'Canvas' },
-];
-
+const componentMap: Record<string, NavBarItem> = {
+  'home': { label: 'Home', component: LandingPage },
+  'canvas': { label: 'Canvas', component: CanvasContainer },
+  'hooks-practice': { label: 'Hooks Practice', component: HooksPractice },
+};
 
 export const App: React.FC = React.memo(() => {
 
@@ -22,35 +23,23 @@ export const App: React.FC = React.memo(() => {
   }, []);
 
   return (
-    <Layout>
-      <Header style={{ display: 'flex', alignItems: 'center' }}>
-        <div className="demo-logo" aria-label="Shapes Logo" />
-        <nav aria-label="Main Navigation" style={{ flex: 1, minWidth: 0 }}>
-          <Menu
-            theme="dark"
-            mode="horizontal"
-            selectedKeys={[active]}
-            onClick={handleMenuClick}
-            items={navBar}
-            style={{ flex: 1, minWidth: 0 }}
-          />
-        </nav>
+    <Layout className="h-screen w-screen flex flex-col">
+      <Header>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          selectedKeys={[active]}
+          onClick={handleMenuClick}
+          items={Object.entries(componentMap).map(([key, item]) => ({ key, label: item.label }))}
+        />
       </Header>
-      <Content style={{ padding: '0 48px' }}>
+      <Content className="flex-1 overflow-auto bg-white flex">
         <Suspense fallback={<div>Loading...</div>}>
-          {active === 'canvas' ? (
-            <main style={{ padding: 24 }}>
-              <CanvasContainer />
-            </main>
-          ) : (
-            <main style={{ padding: 24 }}>
-              <LandingPage />
-            </main>
-          )}
+          {React.createElement(componentMap[active].component)}
         </Suspense>
       </Content>
-      <Footer style={{ textAlign: 'center' }}>
-        Ant Design{new Date().getFullYear()} Created by Ant UED
+      <Footer className="flex-shrink-0 bg-gray-100 text-center">
+        Ant Design {new Date().getFullYear()} — Created by Ant UED
       </Footer>
     </Layout>
   );

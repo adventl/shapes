@@ -10,7 +10,7 @@ import { UseState } from '../use-state/use-state';
 
 const componentMap: Record<string, NavBarItem> = {
   'use-ref': { label: 'Use Ref Example', component: UseRef },
-  'use-state': { label: 'Use State Example', component: UseState},
+  'use-state': { label: 'Use State Example', component: UseState },
 };
 
 export const HooksPractice: React.FC = () => {
@@ -29,7 +29,7 @@ export const HooksPractice: React.FC = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={[active]}
-            onClick={handleMenuClick}
+          onClick={handleMenuClick}
           style={{ height: '100%' }}
           items={Object.entries(componentMap).map(([key, item]) => ({ key, label: item.label }))}
         />

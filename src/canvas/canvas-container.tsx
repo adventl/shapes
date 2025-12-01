@@ -1,8 +1,4 @@
-
-
-
 import React from 'react';
-import './canvas-container.css';
 import { Canvas } from '@react-three/fiber'
 import { ColorPicker, Flex } from 'antd';
 
@@ -12,7 +8,7 @@ export const CanvasContainer: React.FC = React.memo(() => {
       <ColorPicker defaultValue="#1677ff" open={true} />
       <Canvas>
         <mesh onClick={() => alert('Hellooo')}>
-          <boxGeometry args={[2, 4, 2] } />
+          <boxGeometry args={[2, 4, 2]} />
           <meshPhongMaterial />
         </mesh>
         <ambientLight intensity={0.1} />
